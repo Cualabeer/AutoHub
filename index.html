@@ -4,19 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AutoCat Hub - Cars, Parts & Services</title>
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="styles/booking.css" />
+  <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
 
 <header>
-  <div class="container header-container">
+  <div class="container">
     <h1 class="logo">AutoCat Hub</h1>
     <nav>
       <ul class="nav-links" id="navLinks">
         <li><a href="#car-sales">Car Sales</a></li>
         <li><a href="#parts">Parts</a></li>
-        <li><a href="#salvage-recovery">Salvage & Recovery</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#autocat">AutoCat</a></li>
       </ul>
@@ -26,102 +24,61 @@
 </header>
 
 <main>
-  <section id="hero" class="hero-section">
-    <div class="container hero-container">
-      <h2>Your One-Stop Hub for Car Sales, Parts, Salvage & Trusted Services</h2>
-      <p>Find the best deals and book reliable towing, mechanic, and recovery services with ease.</p>
-      <button id="openBookingBtn" class="btn-primary">Book a Service</button>
+  <section id="hero">
+    <div class="container">
+      <h2>Your One-Stop Hub for Car Sales, Parts, & Services</h2>
+      <p>Find the best deals and trusted recovery or mechanic services—all in one place.</p>
     </div>
   </section>
 
   <section id="car-sales" class="section">
     <div class="container">
       <h3>Car Sales</h3>
-      <p>Browse a wide selection of quality pre-owned and salvage cars available for sale.</p>
-      <div class="cards">
-        <article class="card">
-          <img src="https://via.placeholder.com/300x180?text=Toyota+Camry" alt="Toyota Camry" />
-          <h4>Toyota Camry 2018</h4>
-          <p>Well maintained, 45,000 miles, £12,500</p>
-        </article>
-        <article class="card">
-          <img src="https://via.placeholder.com/300x180?text=Ford+Focus" alt="Ford Focus" />
-          <h4>Ford Focus 2016</h4>
-          <p>Great condition, 60,000 miles, £9,300</p>
-        </article>
-      </div>
+      <p>Browse a selection of quality pre-owned and salvage cars.</p>
     </div>
   </section>
 
   <section id="parts" class="section">
     <div class="container">
       <h3>Parts</h3>
-      <p>High-quality new and used car parts available for all makes and models.</p>
-      <div class="cards">
-        <article class="card">
-          <img src="https://via.placeholder.com/300x180?text=Brake+Pads" alt="Brake Pads" />
-          <h4>Brake Pads</h4>
-          <p>Set of 4, £45</p>
-        </article>
-        <article class="card">
-          <img src="https://via.placeholder.com/300x180?text=Headlights" alt="Headlights" />
-          <h4>LED Headlights</h4>
-          <p>Pair, £120</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="salvage-recovery" class="section">
-    <div class="container">
-      <h3>Salvage & Recovery</h3>
-      <p>Quick and reliable salvage and recovery services for your vehicle emergencies.</p>
-      <div class="cards">
-        <article class="card">
-          <img src="https://via.placeholder.com/300x180?text=Towing" alt="Towing Service" />
-          <h4>Towing & Recovery</h4>
-          <p>Fast and safe vehicle towing with 24/7 support.</p>
-        </article>
-        <article class="card">
-          <img src="https://via.placeholder.com/300x180?text=Salvage" alt="Salvage Service" />
-          <h4>Vehicle Salvage</h4>
-          <p>Professional salvage solutions for damaged cars.</p>
-        </article>
-      </div>
+      <p>High-quality parts available for all makes and models.</p>
     </div>
   </section>
 
   <section id="services" class="section">
     <div class="container">
       <h3>Services</h3>
-      <p>Book trusted services including towing, mechanics, inspections, and more.</p>
+      <p>Book trusted towing, mechanics, inspections and more.</p>
     </div>
   </section>
 
   <section id="autocat" class="section">
     <div class="container">
       <h3>AutoCat</h3>
-      <p>Manage your car inventory and parts with our easy-to-use AutoCat system.</p>
+      <p>Manage your car inventory and parts with our AutoCat system.</p>
       <a href="#" class="btn-secondary">Learn More</a>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="container footer-container">
+  <div class="container">
     <p>© 2025 AutoCat Hub. All rights reserved.</p>
   </div>
 </footer>
 
+<!-- Floating Booking Button -->
+<button id="openBookingBtn" class="floating-booking-btn">Book a Service</button>
+
+<!-- Scripts -->
 <script src="scripts/booking.js" defer></script>
 <script>
-  // Mobile menu toggle
   document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.getElementById('navLinks');
 
     navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
       navToggle.setAttribute('aria-expanded', !expanded);
       navLinks.classList.toggle('nav-active');
     });

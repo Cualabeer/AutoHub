@@ -2,18 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AutoCat Hub</title>
-  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/booking.css" />
 </head>
 <body>
-  <main>
-    <section id="hero">
-      <h1>Welcome to AutoCat</h1>
-      <p>Book towing, recovery, mechanic, and inspection services easily.</p>
-      <button id="openBookingBtn" class="btn-primary">Book a Service</button>
-    </section>
-  </main>
-  <script src="scripts/booking.js"></script>
+
+<header>
+  <div class="container">
+    <h1>AutoCat Hub</h1>
+  </div>
+</header>
+
+<main class="container">
+  <section class="section">
+    <h2>Welcome to AutoCat</h2>
+    <p>Your hub for car sales, parts, recovery, and mechanic bookings.</p>
+    <button class="btn-primary" id="openBookingBtn">Book a Service</button>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 AutoCat Hub. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModalBtn">&times;</span>
+    <h2>Book a Service</h2>
+    <form id="bookingForm">
+      <label for="serviceType">Select Service:</label>
+      <select id="serviceType" required>
+        <option value="">Choose...</option>
+        <option value="recovery">Recovery/Towing</option>
+        <option value="mechanic">Mechanic</option>
+        <option value="inspection">Inspection</option>
+      </select>
+
+      <label for="description">Description:</label>
+      <textarea id="description" rows="3" placeholder="Describe your issue..." required></textarea>
+
+      <label for="bookingDate">Choose a date:</label>
+      <input type="date" id="bookingDate" required />
+
+      <label for="bookingTime">Choose a time:</label>
+      <select id="bookingTime" required>
+        <option value="">Select Time</option>
+        <option>09:00</option>
+        <option>10:00</option>
+        <option>11:00</option>
+        <option>12:00</option>
+        <option>13:00</option>
+        <option>14:00</option>
+        <option>15:00</option>
+        <option>16:00</option>
+        <option>17:00</option>
+        <option>18:00</option>
+        <option value="night">After 6pm (Night Rate)</option>
+      </select>
+
+      <label for="location">Enter Address or use GPS:</label>
+      <input type="text" id="location" placeholder="Your location or postcode" />
+
+      <button type="submit" class="btn-primary">Confirm Booking</button>
+    </form>
+  </div>
+</div>
+
+<script src="scripts/booking.js" defer></script>
 </body>
 </html>

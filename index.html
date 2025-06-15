@@ -1,250 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Booking Focus</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    padding: 2rem;
-  }
-  .btn-primary {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
-  }
-  .btn-primary:disabled {
-    background: #88b4ff;
-    cursor: not-allowed;
-  }
-  /* Modal styles */
-  .modal, .overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    display: none;
-  }
-  .overlay {
-    background: rgba(0,0,0,0.4);
-    z-index: 1000;
-  }
-  .modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1100;
-  }
-  .modal-content {
-    background: white;
-    border-radius: 8px;
-    padding: 2rem;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.15);
-    position: relative;
-  }
-  .close-btn {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    font-size: 1.5rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-  form label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: 600;
-  }
-  form select, form textarea, form input[type="date"] {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-  }
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-  form button[type="submit"] {
-    margin-top: 1.5rem;
-  }
-  .rate-info {
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
-    font-style: italic;
-    color: #555;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoCat Hub - Cars, Parts & Services</title>
+  <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
 
-<button class="btn-primary" id="openBookingBtn">Book a Service</button>
-
-<div class="overlay" id="modalOverlay" tabindex="-1"></div>
-
-<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="bookingModal">
-  <div class="modal-content">
-    <button class="close-btn" aria-label="Close booking form" id="closeModalBtn">&times;</button>
-    <h2 id="modalTitle">Book a Service</h2>
-    <form id="bookingForm" novalidate>
-      <label for="serviceSelect">Select Service</label>
-      <select id="serviceSelect" required>
-        <option value="" disabled selected>Select a service</option>
-        <option value="Towing/Recovery">Towing/Recovery</option>
-        <option value="Mechanic Services">Mechanic Services</option>
-        <option value="Salvage and Recovery">Salvage and Recovery</option>
-        <option value="Inspection and Diagnostics">Inspection and Diagnostics</option>
-      </select>
-
-      <label for="descriptionInput">Description</label>
-      <textarea id="descriptionInput" minlength="10" required placeholder="Enter at least 10 characters"></textarea>
-
-      <label for="dateInput">Select Date</label>
-      <input type="date" id="dateInput" required />
-
-      <label for="timeSelect">Select Time Slot</label>
-      <select id="timeSelect" required>
-        <option value="" disabled selected>Select a time</option>
-      </select>
-      <div class="rate-info" id="rateInfo"></div>
-
-      <button type="submit" class="btn-primary" disabled>Confirm Booking</button>
-    </form>
+<header>
+  <div class="container">
+    <h1 class="logo">AutoCat Hub</h1>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#car-sales">Car Sales</a></li>
+        <li><a href="#parts">Parts</a></li>
+        <li><a href="#salvage-recovery">Salvage & Recovery</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#autocat">AutoCat</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </nav>
   </div>
-</div>
+</header>
 
+<main>
+  <section id="hero">
+    <div class="container">
+      <h2>Your One-Stop Hub for Car Sales, Parts, Salvage & Services</h2>
+      <p>Find the best deals on cars, quality parts, and book trusted recovery or mechanic services—all in one place.</p>
+      <button id="openBookingBtn" class="btn-primary">Book a Service</button>
+    </div>
+  </section>
+
+  <section id="car-sales" class="section">
+    <div class="container">
+      <h3>Car Sales</h3>
+      <p>Browse a wide selection of quality pre-owned and salvage cars available for sale.</p>
+      <!-- Sample cards -->
+      <div class="cards">
+        <article class="card">
+          <img src="https://via.placeholder.com/300x180?text=Toyota+Camry" alt="Toyota Camry" />
+          <h4>Toyota Camry 2018</h4>
+          <p>Well maintained, 45,000 miles, £12,500</p>
+        </article>
+        <article class="card">
+          <img src="https://via.placeholder.com/300x180?text=Ford+Focus" alt="Ford Focus" />
+          <h4>Ford Focus 2016</h4>
+          <p>Great condition, 60,000 miles, £9,300</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="parts" class="section">
+    <div class="container">
+      <h3>Parts</h3>
+      <p>High-quality new and used car parts available for all makes and models.</p>
+      <div class="cards">
+        <article class="card">
+          <img src="https://via.placeholder.com/300x180?text=Brake+Pads" alt="Brake Pads" />
+          <h4>Brake Pads</h4>
+          <p>Set of 4, £45</p>
+        </article>
+        <article class="card">
+          <img src="https://via.placeholder.com/300x180?text=Headlights" alt="Headlights" />
+          <h4>LED Headlights</h4>
+          <p>Pair, £120</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="salvage-recovery" class="section">
+    <div class="container">
+      <h3>Salvage & Recovery</h3>
+      <p>Quick and reliable salvage and recovery services for your vehicle emergencies.</p>
+      <div class="cards">
+        <article class="card">
+          <img src="https://via.placeholder.com/300x180?text=Towing" alt="Towing Service" />
+          <h4>Towing & Recovery</h4>
+          <p>Fast and safe vehicle towing with 24/7 support.</p>
+        </article>
+        <article class="card">
+          <img src="https://via.placeholder.com/300x180?text=Salvage" alt="Salvage Service" />
+          <h4>Vehicle Salvage</h4>
+          <p>Professional salvage solutions for damaged cars.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <h3>Services</h3>
+      <p>Book trusted services including towing, mechanics, inspections, and more.</p>
+    </div>
+  </section>
+
+  <section id="autocat" class="section">
+    <div class="container">
+      <h3>AutoCat</h3>
+      <p>Manage your car inventory and parts with our easy-to-use AutoCat system.</p>
+      <a href="#" class="btn-secondary">Learn More</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 AutoCat Hub. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Booking modal and overlay will be injected by booking.js -->
+
+<script src="scripts/booking.js" defer></script>
 <script>
-  (() => {
-    const openBtn = document.getElementById('openBookingBtn');
-    const modal = document.getElementById('bookingModal');
-    const overlay = document.getElementById('modalOverlay');
-    const closeBtn = document.getElementById('closeModalBtn');
-    const form = document.getElementById('bookingForm');
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('navLinks');
 
-    const serviceSelect = document.getElementById('serviceSelect');
-    const descriptionInput = document.getElementById('descriptionInput');
-    const dateInput = document.getElementById('dateInput');
-    const timeSelect = document.getElementById('timeSelect');
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const rateInfo = document.getElementById('rateInfo');
-
-    const DAY_RATE_END = 18; // 6 PM
-    const START_HOUR = 9;
-    const END_HOUR = 21;
-
-    function openModal() {
-      modal.style.display = 'flex';
-      overlay.style.display = 'block';
-      modal.setAttribute('aria-hidden', 'false');
-      overlay.setAttribute('aria-hidden', 'false');
-      form.reset();
-      submitBtn.disabled = true;
-
-      // Set date picker min to today
-      const todayStr = new Date().toISOString().split('T')[0];
-      dateInput.min = todayStr;
-
-      populateTimeSlots(new Date());
-      updateRateInfo('');
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-      overlay.style.display = 'none';
-      modal.setAttribute('aria-hidden', 'true');
-      overlay.setAttribute('aria-hidden', 'true');
-    }
-
-    function populateTimeSlots(selectedDate) {
-      timeSelect.innerHTML = '<option value="" disabled selected>Select a time</option>';
-      const now = new Date();
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const isToday = selectedDate.getTime() === today.getTime();
-
-      for(let hour = START_HOUR; hour <= END_HOUR; hour++) {
-        if(isToday && hour <= now.getHours()) continue;
-
-        const displayHour = hour > 12 ? hour - 12 : hour;
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-        const option = document.createElement('option');
-        option.value = hour;
-        option.textContent = `${displayHour}:00 ${ampm} (${hour >= DAY_RATE_END ? 'Night Rate' : 'Day Rate'})`;
-        timeSelect.appendChild(option);
-      }
-    }
-
-    function updateRateInfo(hourVal) {
-      if (!hourVal) {
-        rateInfo.textContent = '';
-        return;
-      }
-      const hour = parseInt(hourVal, 10);
-      rateInfo.textContent = hour >= DAY_RATE_END ? 'Selected time is Night Rate' : 'Selected time is Day Rate';
-    }
-
-    function validateForm() {
-      const serviceValid = serviceSelect.value !== '';
-      const descriptionValid = descriptionInput.value.trim().length >= 10;
-      const dateValid = dateInput.value !== '';
-      const timeValid = timeSelect.value !== '';
-
-      submitBtn.disabled = !(serviceValid && descriptionValid && dateValid && timeValid);
-    }
-
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
-
-    dateInput.addEventListener('change', () => {
-      if(dateInput.value) {
-        populateTimeSlots(new Date(dateInput.value));
-      }
-      validateForm();
-      updateRateInfo('');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('nav-active');
     });
-
-    timeSelect.addEventListener('change', (e) => {
-      updateRateInfo(e.target.value);
-      validateForm();
-    });
-
-    serviceSelect.addEventListener('change', validateForm);
-    descriptionInput.addEventListener('input', validateForm);
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert(
-        `Booking Confirmed!\n\n` +
-        `Service: ${serviceSelect.value}\n` +
-        `Description: ${descriptionInput.value.trim()}\n` +
-        `Date: ${new Date(dateInput.value).toDateString()}\n` +
-        `Time: ${timeSelect.options[timeSelect.selectedIndex].text}`
-      );
-      closeModal();
-    });
-
-    // Accessibility: trap focus in modal
-    document.addEventListener('keydown', (e) => {
-      if(modal.style.display === 'flex' && e.key === 'Escape') {
-        closeModal();
-      }
-    });
-  })();
+  });
 </script>
 
 </body>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Job Management</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Manage Booked Jobs and Assign Staff</p>
+  </header>
+
+  <main>
+    <section class="job-table-section">
+      <h2>Jobs List</h2>
+      <div class="table-wrapper">
+        <table class="job-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Address</th>
+              <th>Description</th>
+              <th>Rate</th>
+              <th>Assigned To</th>
+            </tr>
+          </thead>
+          <tbody id="bookingTableBody">
+            <!-- Jobs will be injected here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/admin.js"></script>
+</body>
+</html>

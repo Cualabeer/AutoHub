@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AutoCat Hub - Cars, Parts & Services</title>
-  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/booking.css" />
 </head>
 <body>
 
 <header>
-  <div class="container">
+  <div class="container header-container">
     <h1 class="logo">AutoCat Hub</h1>
     <nav>
       <ul class="nav-links" id="navLinks">
@@ -25,10 +26,10 @@
 </header>
 
 <main>
-  <section id="hero">
-    <div class="container">
-      <h2>Your One-Stop Hub for Car Sales, Parts, Salvage & Services</h2>
-      <p>Find the best deals on cars, quality parts, and book trusted recovery or mechanic services—all in one place.</p>
+  <section id="hero" class="hero-section">
+    <div class="container hero-container">
+      <h2>Your One-Stop Hub for Car Sales, Parts, Salvage & Trusted Services</h2>
+      <p>Find the best deals and book reliable towing, mechanic, and recovery services with ease.</p>
       <button id="openBookingBtn" class="btn-primary">Book a Service</button>
     </div>
   </section>
@@ -37,7 +38,6 @@
     <div class="container">
       <h3>Car Sales</h3>
       <p>Browse a wide selection of quality pre-owned and salvage cars available for sale.</p>
-      <!-- Sample cards -->
       <div class="cards">
         <article class="card">
           <img src="https://via.placeholder.com/300x180?text=Toyota+Camry" alt="Toyota Camry" />
@@ -108,12 +108,10 @@
 </main>
 
 <footer>
-  <div class="container">
+  <div class="container footer-container">
     <p>© 2025 AutoCat Hub. All rights reserved.</p>
   </div>
 </footer>
-
-<!-- Booking modal and overlay will be injected by booking.js -->
 
 <script src="scripts/booking.js" defer></script>
 <script>

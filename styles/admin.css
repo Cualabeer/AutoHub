@@ -1,38 +1,18 @@
-body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff;
-  color: #222;
-}
-
-header {
-  background-color: #007BFF;
-  color: white;
-  padding: 1.5rem;
-  text-align: center;
-}
+@import url('global.css');
 
 main {
   padding: 1rem;
 }
 
-h2 {
-  margin-bottom: 1rem;
-}
-
-.table-wrapper {
-  overflow-x: auto;
-}
-
 .job-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 .job-table th,
 .job-table td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   padding: 0.75rem;
   text-align: left;
   font-size: 0.95rem;
@@ -43,13 +23,11 @@ h2 {
 }
 
 .job-table tr:nth-child(even) {
-  background-color: #fafafa;
+  background-color: #fefefe;
 }
 
 .user-dropdown {
-  padding: 0.5rem;
-  width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
@@ -57,9 +35,5 @@ h2 {
   .job-table td {
     font-size: 0.85rem;
     padding: 0.5rem;
-  }
-
-  .user-dropdown {
-    font-size: 0.85rem;
   }
 }

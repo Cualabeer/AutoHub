@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AutoHub – your one-stop hub for car sales, parts, salvage & roadside recovery. Browse inventory, order parts, and book recovery services.">
+  <title>AutoHub – Cars · Parts · Salvage & Recovery</title>
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="AutoHub – Cars · Parts · Salvage & Recovery">
+  <meta property="og:description" content="Explore new & used cars, quality parts, and book salvage/recovery services—all in one place.">
+  <meta property="og:image" content="https://yourdomain.com/assets/og-image.jpg">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicons & Touch Icons -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Industry-Rated CSS Reset & Utility Vars -->
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-family: 'Inter', sans-serif; line-height: 1.5; scroll-behavior: smooth; }
+    body { color: var(--color-text); background: var(--color-bg); }
+
+    /* Design System Tokens */
+    :root {
+      /* Colors */
+      --color-primary: #0074D9;
+      --color-secondary: #FF851B;
+      --color-bg: #F8F9FA;
+      --color-surface: #FFFFFF;
+      --color-text: #212529;
+      --color-muted: #6C757D;
+
+      /* Spacing */
+      --space-xxs: 0.25rem;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+
+      /* Typography */
+      --fs-sm: 0.875rem;
+      --fs-base: 1rem;
+      --fs-lg: 1.25rem;
+      --fs-xl: 2rem;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-bold: 700;
+
+      /* Border Radius */
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Utility Classes */
+    .u-text-center { text-align: center; }
+    .u-visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+      border: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block; font-weight: var(--fw-medium); text-decoration: none;
+      text-align: center; padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-md); transition: filter 0.2s;
+    }
+    .btn:hover { filter: brightness(0.9); }
+    .btn--primary { background: var(--color-primary); color: #fff; }
+    .btn--secondary { background: var(--color-secondary); color: #fff; }
+
+    /* Header */
+    header.header {
+      background: var(--color-surface); box-shadow: var(--shadow-sm);
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .header__inner {
+      max-width: 1200px; margin: 0 auto; padding: var(--space-sm) var(--space-md);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header__logo { font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--color-primary); text-decoration: none; }
+    .header__nav { display: flex; gap: var(--space-md); }
+    .header__nav-link {
+      font-size: var(--fs-base); color: var(--color-text); text-decoration: none;
+      padding: var(--space-xs);
+    }
+    .header__nav-link:hover { color: var(--color-primary); }
+
+    /* Hero */
+    .hero {
+      position: relative; background: url('/assets/hero.jpg') center/cover no-repeat;
+      padding: var(--space-xl) var(--space-md); color: #fff;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+    }
+    .hero__content { position: relative; max-width: 800px; }
+    .hero__title { font-size: var(--fs-xl); margin-bottom: var(--space-sm); }
+    .hero__subtitle { font-size: var(--fs-lg); margin-bottom: var(--space-md); }
+
+    /* Section Wrapper */
+    section.section { padding: var(--space-xl) var(--space-md); }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* Feature Grid */
+    .features {
+      display: grid; gap: var(--space-lg);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card {
+      background: var(--color-surface); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .card__img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+    .card__body { padding: var(--space-md); flex: 1; display: flex; flex-direction: column; }
+    .card__title { font-size: var(--fs-lg); margin-bottom: var(--space-xs); }
+    .card__text { color: var(--color-muted); flex: 1; margin-bottom: var(--space-md); }
+    .card__action { align-self: start; }
+
+    /* Form */
+    .form {
+      background: var(--color-surface); padding: var(--space-lg);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+      max-width: 500px; margin: 0 auto;
+    }
+    .form__group { margin-bottom: var(--space-md); }
+    .form__label {
+      display: block; font-weight: var(--fw-medium);
+      margin-bottom: var(--space-xs);
+    }
+    .form__control {
+      width: 100%; padding: var(--space-xs); font-size: var(--fs-base);
+      border: 1px solid #ccc; border-radius: var(--radius-sm);
+    }
+
+    /* Footer */
+    footer.footer {
+      background: var(--color-text); color: var(--color-bg);
+      padding: var(--space-lg) var(--space-md);
+    }
+    .footer__inner {
+      max-width: 1200px; margin: 0 auto; display: flex;
+      flex-wrap: wrap; gap: var(--space-lg); justify-content: space-between;
+    }
+    .footer__section h4 { margin-bottom: var(--space-xs); }
+    .footer__link {
+      display: block; color: var(--color-bg); text-decoration: none;
+      margin-bottom: var(--space-xs); font-size: var(--fs-sm);
+    }
+    .footer__link:hover { text-decoration: underline; }
+
+    /* Responsive (mobile-first) */
+    @media (min-width: 768px) {
+      .hero { padding: var(--space-xl) 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo">Auto<span style="color: var(--color-secondary)">Hub</span></a>
+      <nav class="header__nav" role="navigation" aria-label="Main Navigation">
+        <a href="#cars" class="header__nav-link">Cars</a>
+        <a href="#parts" class="header__nav-link">Parts</a>
+        <a href="#salvage" class="header__nav-link">Salvage</a>
+        <a href="#recovery" class="header__nav-link">Recovery</a>
+        <a href="#contact" class="header__nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" role="img" aria-label="Showcase of auto services">
+    <div class="hero__content">
+      <h1 class="hero__title">Your One-Stop Auto Sales & Services Hub</h1>
+      <p class="hero__subtitle">Explore new & used cars, find quality parts, and book salvage or roadside recovery—all in one place.</p>
+      <a href="#cars" class="btn btn--primary">Shop Cars</a>
+      <a href="#parts" class="btn btn--secondary">Browse Parts</a>
+    </div>
+  </section>
+
+  <!-- Cars Section -->
+  <section id="cars" class="section" aria-labelledby="cars-title">
+    <div class="container">
+      <h2 id="cars-title">Featured Cars</h2>
+      <div class="features">
+        <!-- Card 1 -->
+        <article class="card" role="region" aria-label="2023 Sedan LX">
+          <img src="/assets/cars/sedan.jpg" alt="2023 Sedan LX" class="card__img">
+          <div class="card__body">
+            <h3 class="card__title">2023 Sedan LX</h3>
+            <p class="card__text">Efficient, stylish, and packed with features. Starting at £18,500.</p>
+            <a href="#" class="btn btn--primary card__action">View Details</a>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="card" role="region" aria-label="2022 SUV XTR">
+          <img src="/assets/cars/suv.jpg" alt="2022 SUV XTR" class="card__img">
+          <div class="card__body">
+            <h3 class="card__title">2022 SUV XTR</h3>
+            <p class="card__text">Spacious, powerful, and ready for any terrain. Starting at £24,900.</p>
+            <a href="#" class="btn btn--primary card__action">View Details</a>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="card" role="region" aria-label="2023 Convertible Z">
+          <img src="/assets/cars/convertible.jpg" alt="2023 Convertible Z" class="card__img">
+          <div class="card__body">
+            <h3 class="card__title">2023 Convertible Z</h3>
+            <p class="card__text">Feel the wind. Luxury driving at its finest. Starting at £29,750.</p>
+            <a href="#" class="btn btn--primary card__action">View Details</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parts Section -->
+  <section id="parts" class="section" aria-labelledby="parts-title">
+    <div class="container">
+      <h2 id="parts-title">Top-Quality Parts</h2>
+      <div class="features">
+        <!-- Example part card -->
+        <article class="card" role="region" aria-label="Brake Systems">
+          <img src="/assets/parts/brakes.jpg" alt="Brake Systems" class="card__img">
+          <div class="card__body">
+            <h3 class="card__title">Brake Systems</h3>
+            <p class="card__text">OEM and aftermarket options for all makes and models.</p>
+            <a href="#" class="btn btn--secondary card__action">Shop Brakes</a>
+          </div>
+        </article>
+        <!-- Add more part cards as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Salvage & Recovery Booking -->
+  <section id="salvage" class="section" aria-labelledby="salvage-title">
+    <div class="container">
+      <h2 id="salvage-title">Salvage & Recovery Booking</h2>
+      <p>Need to tow, recover, or salvage a vehicle? Complete the form and our team will be on the way.</p>
+      <form class="form" id="recovery" role="form">
+        <div class="form__group">
+          <label for="service_type" class="form__label">Service Type</label>
+          <select id="service_type" class="form__control" required>
+            <option value="">Choose a Service</option>
+            <option value="salvage">Vehicle Salvage</option>
+            <option value="recovery">Roadside Recovery</option>
+            <option value="towing">Towing Service</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label for="contact_name" class="form__label">Contact Name</label>
+          <input type="text" id="contact_name" class="form__control" placeholder="Your Name" required>
+        </div>
+        <div class="form__group">
+          <label for="contact_phone" class="form__label">Phone Number</label>
+          <input type="tel" id="contact_phone" class="form__control" placeholder="+44 7700 900123" required>
+        </div>
+        <div class="form__group">
+          <label for="pickup_location" class="form__label">Pickup Location</label>
+          <input type="text" id="pickup_location" class="form__control" placeholder="Address or GPS coords" required>
+        </div>
+        <div class="form__group">
+          <label for="additional_details" class="form__label">Additional Details</label>
+          <textarea id="additional_details" class="form__control" rows="4" placeholder="Describe the issue or special requirements"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Request Service</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__section">
+        <h4>About AutoHub</h4>
+        <p>Your trusted partner for car sales, parts, salvage, and recovery services.</p>
+      </div>
+      <div class="footer__section">
+        <h4>Quick Links</h4>
+        <a href="#cars" class="footer__link">Cars for Sale</a>
+        <a href="#parts" class="footer__link">Parts</a>
+        <a href="#salvage" class="footer__link">Salvage & Recovery</a>
+        <a href="#contact" class="footer__link">Contact Us</a>
+      </div>
+      <div class="footer__section">
+        <h4>Follow Us</h4>
+        <a href="#" class="footer__link" aria-label="Facebook">Facebook</a>
+        <a href="#" class="footer__link" aria-label="Twitter">Twitter</a>
+        <a href="#" class="footer__link" aria-label="Instagram">Instagram</a>
+      </div>
+    </div>
+    <p class="u-text-center" style="margin-top: var(--space-lg); font-size: var(--fs-sm); color: var(--color-muted);">
+      &copy; 2025 AutoHub. All rights reserved.
+    </p>
+  </footer>
+
+</body>
+</html>

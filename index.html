@@ -2,88 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AutoCat Hub - Cars, Parts & Services</title>
-  <link rel="stylesheet" href="styles/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoCat Hub</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<header>
-  <div class="container">
-    <h1 class="logo">AutoCat Hub</h1>
-    <nav>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#car-sales">Car Sales</a></li>
-        <li><a href="#parts">Parts</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#autocat">AutoCat</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section id="hero">
-    <div class="container">
-      <h2>Your One-Stop Hub for Car Sales, Parts, & Services</h2>
-      <p>Find the best deals and trusted recovery or mechanic services—all in one place.</p>
-    </div>
-  </section>
-
-  <section id="car-sales" class="section">
-    <div class="container">
-      <h3>Car Sales</h3>
-      <p>Browse a selection of quality pre-owned and salvage cars.</p>
-    </div>
-  </section>
-
-  <section id="parts" class="section">
-    <div class="container">
-      <h3>Parts</h3>
-      <p>High-quality parts available for all makes and models.</p>
-    </div>
-  </section>
-
-  <section id="services" class="section">
-    <div class="container">
-      <h3>Services</h3>
-      <p>Book trusted towing, mechanics, inspections and more.</p>
-    </div>
-  </section>
-
-  <section id="autocat" class="section">
-    <div class="container">
-      <h3>AutoCat</h3>
-      <p>Manage your car inventory and parts with our AutoCat system.</p>
-      <a href="#" class="btn-secondary">Learn More</a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    <p>© 2025 AutoCat Hub. All rights reserved.</p>
-  </div>
-</footer>
-
-<!-- Floating Booking Button -->
-<button id="openBookingBtn" class="floating-booking-btn">Book a Service</button>
-
-<!-- Scripts -->
-<script src="scripts/booking.js" defer></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.getElementById('navLinks');
-
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('nav-active');
-    });
-  });
-</script>
-
+  <main>
+    <section id="hero">
+      <h1>Welcome to AutoCat</h1>
+      <p>Book towing, recovery, mechanic, and inspection services easily.</p>
+      <button id="openBookingBtn" class="btn-primary">Book a Service</button>
+    </section>
+  </main>
+  <script src="booking.js"></script>
 </body>
 </html>

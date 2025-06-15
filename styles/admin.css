@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #222;
+}
+
+header {
+  background-color: #007BFF;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+main {
+  padding: 1rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.job-table th,
+.job-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.job-table th {
+  background-color: #f4f4f4;
+}
+
+.job-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.user-dropdown {
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .job-table th,
+  .job-table td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .user-dropdown {
+    font-size: 0.85rem;
+  }
+}

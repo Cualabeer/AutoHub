@@ -1,255 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic Meta -->
+  <!-- Basic Meta & Preloads -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AutoHub – your one-stop hub for car sales, parts, salvage & roadside recovery.">
   <title>AutoHub – Cars · Parts · Salvage & Recovery</title>
-  <style>
-    /* Reset & Base */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-family: 'Inter', sans-serif; line-height: 1.5; scroll-behavior: smooth; }
-    body { color: var(--color-text); background: var(--color-bg); }
+  <meta name="description" content="AutoHub – your one-stop hub for car sales, parts, salvage & roadside recovery.">
 
-    :root {
-      /* Colors */
-      --color-primary: #0074D9;
-      --color-secondary: #FF851B;
-      --color-bg: #F8F9FA;
-      --color-surface: #FFFFFF;
-      --color-text: #212529;
-      --color-muted: #6C757D;
-      /* Spacing */
-      --space-xs: .5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2rem;
-      --space-xl: 3rem;
-      /* Typography */
-      --fs-base: 1rem;
-      --fs-lg: 1.25rem;
-      --fs-xl: 2rem;
-      --fw-medium: 500;
-      --fw-bold: 700;
-      /* Radius & Shadow */
-      --radius: .5rem;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-    }
+  <!-- Preload hero image & Web Font -->
+  <link rel="preload" href="https://via.placeholder.com/1600x600" as="image">
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 
-    /* Utility */
-    .u-text-center { text-align: center; }
-
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      font-weight: var(--fw-medium);
-      text-decoration: none;
-      padding: var(--space-xs) var(--space-md);
-      border-radius: var(--radius);
-      transition: filter .2s;
-    }
-    .btn:hover { filter: brightness(.9); }
-    .btn--primary { background: var(--color-primary); color: #fff; }
-    .btn--secondary { background: var(--color-secondary); color: #fff; }
-
-    /* Header */
-    header.header {
-      background: var(--color-surface);
-      box-shadow: var(--shadow-sm);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .header__inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--space-sm);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .header__logo {
-      font-size: var(--fs-xl);
-      font-weight: var(--fw-bold);
-      color: var(--color-primary);
-      text-decoration: none;
-    }
-    /* Hamburger */
-    .header__toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      width: 2rem;
-      height: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-    .header__toggle span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background: var(--color-text);
-      transition: transform .3s, opacity .3s;
-    }
-    /* Nav */
-    nav.header__nav {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: var(--color-surface);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height .3s ease-out;
-    }
-    nav.header__nav.open { max-height: 300px; }
-    .header__nav-list {
-      list-style: none;
-      padding: var(--space-sm);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-    .header__nav-link {
-      color: var(--color-text);
-      text-decoration: none;
-      font-size: var(--fs-base);
-    }
-    .header__nav-link:hover { color: var(--color-primary); }
-
-    /* Hero */
-    .hero {
-      position: relative;
-      background: url('https://via.placeholder.com/1600x600') center/cover no-repeat;
-      padding: var(--space-xl) var(--space-sm);
-      color: #fff;
-      text-align: center;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-    }
-    .hero__content { position: relative; max-width: 800px; margin: 0 auto; }
-    .hero__title { font-size: var(--fs-xl); margin-bottom: var(--space-sm); }
-    .hero__subtitle { font-size: var(--fs-base); margin-bottom: var(--space-md); }
-
-    /* Sections */
-    section.section { padding: var(--space-xl) var(--space-sm); }
-    .container { max-width: 1200px; margin: 0 auto; }
-
-    /* Feature Grid */
-    .features {
-      display: grid;
-      gap: var(--space-lg);
-      grid-template-columns: 1fr;
-    }
-    .card {
-      background: var(--color-surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .card__img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-    .card__body {
-      padding: var(--space-md);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card__title { font-size: var(--fs-lg); margin-bottom: var(--space-xs); }
-    .card__text { color: var(--color-muted); flex: 1; margin-bottom: var(--space-md); }
-    .card__action { align-self: flex-start; }
-
-    /* Form */
-    .form {
-      background: var(--color-surface);
-      padding: var(--space-lg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .form__group { margin-bottom: var(--space-md); }
-    .form__label {
-      display: block;
-      font-weight: var(--fw-medium);
-      margin-bottom: var(--space-xs);
-    }
-    .form__control {
-      width: 100%;
-      padding: var(--space-xs);
-      border: 1px solid #ccc;
-      border-radius: var(--radius);
-      font-size: var(--fs-base);
-    }
-
-    /* Footer */
-    footer.footer {
-      background: var(--color-text);
-      color: var(--color-bg);
-      padding: var(--space-lg) var(--space-sm);
-    }
-    .footer__inner {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-      text-align: center;
-    }
-    .footer__section h4 { margin-bottom: var(--space-xs); }
-    .footer__link {
-      display: block;
-      color: var(--color-bg);
-      text-decoration: none;
-      margin-bottom: var(--space-xs);
-      font-size: var(--fs-base);
-    }
-    .footer__link:hover { text-decoration: underline; }
-
-    /* Desktop Overrides */
-    @media (min-width: 768px) {
-      .header__toggle { display: none; }
-      nav.header__nav {
-        position: static;
-        max-height: none;
-        box-shadow: none;
-      }
-      .header__nav-list {
-        flex-direction: row;
-        gap: var(--space-md);
-        padding: 0;
-      }
-      .features {
-        grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      }
-      .footer__inner {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-      }
-    }
-  </style>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
 
   <!-- Header -->
   <header class="header" role="banner">
     <div class="header__inner">
-      <a href="/" class="header__logo">Auto<span style="color: var(--color-secondary)">Hub</span></a>
-      <button class="header__toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <a href="/" class="header__logo">Auto<span class="header__logo--secondary">Hub</span></a>
+      <button class="header__toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <nav class="header__nav" role="navigation" aria-label="Main">
+      <nav class="header__nav" role="navigation">
         <ul class="header__nav-list">
           <li><a href="#cars" class="header__nav-link">Cars</a></li>
           <li><a href="#parts" class="header__nav-link">Parts</a></li>
@@ -272,31 +46,31 @@
   </section>
 
   <!-- Cars Section -->
-  <section id="cars" class="section" aria-labelledby="cars-title">
+  <section id="cars" class="section">
     <div class="container">
-      <h2 id="cars-title">Featured Cars</h2>
+      <h2 class="section__title">Featured Cars</h2>
       <div class="features">
-        <article class="card" aria-label="2023 Sedan LX">
-          <img src="https://via.placeholder.com/400x200?text=Sedan+LX" alt="2023 Sedan LX" class="card__img">
+        <article class="card">
+          <img src="https://via.placeholder.com/400x200?text=Sedan+LX" alt="2023 Sedan LX" loading="lazy" class="card__img">
           <div class="card__body">
             <h3 class="card__title">2023 Sedan LX</h3>
-            <p class="card__text">Efficient, stylish, packed with features. Starting at £18,500.</p>
+            <p class="card__text">Efficient, stylish. £18,500.</p>
             <a href="#" class="btn btn--primary card__action">View Details</a>
           </div>
         </article>
-        <article class="card" aria-label="2022 SUV XTR">
-          <img src="https://via.placeholder.com/400x200?text=SUV+XTR" alt="2022 SUV XTR" class="card__img">
+        <article class="card">
+          <img src="https://via.placeholder.com/400x200?text=SUV+XTR" alt="2022 SUV XTR" loading="lazy" class="card__img">
           <div class="card__body">
             <h3 class="card__title">2022 SUV XTR</h3>
-            <p class="card__text">Spacious, powerful, ready for any terrain. Starting at £24,900.</p>
+            <p class="card__text">Spacious, powerful. £24,900.</p>
             <a href="#" class="btn btn--primary card__action">View Details</a>
           </div>
         </article>
-        <article class="card" aria-label="2023 Convertible Z">
-          <img src="https://via.placeholder.com/400x200?text=Convertible+Z" alt="2023 Convertible Z" class="card__img">
+        <article class="card">
+          <img src="https://via.placeholder.com/400x200?text=Convertible+Z" alt="2023 Convertible Z" loading="lazy" class="card__img">
           <div class="card__body">
             <h3 class="card__title">2023 Convertible Z</h3>
-            <p class="card__text">Feel the wind. Luxury driving at its finest. Starting at £29,750.</p>
+            <p class="card__text">Luxury driving. £29,750.</p>
             <a href="#" class="btn btn--primary card__action">View Details</a>
           </div>
         </article>
@@ -305,31 +79,31 @@
   </section>
 
   <!-- Parts Section -->
-  <section id="parts" class="section" aria-labelledby="parts-title">
+  <section id="parts" class="section">
     <div class="container">
-      <h2 id="parts-title">Top-Quality Parts</h2>
+      <h2 class="section__title">Top-Quality Parts</h2>
       <div class="features">
-        <article class="card" aria-label="Brake Systems">
-          <img src="https://via.placeholder.com/400x200?text=Brakes" alt="Brake Systems" class="card__img">
+        <article class="card">
+          <img src="https://via.placeholder.com/400x200?text=Brakes" alt="Brake Systems" loading="lazy" class="card__img">
           <div class="card__body">
             <h3 class="card__title">Brake Systems</h3>
-            <p class="card__text">OEM & aftermarket options for all makes and models.</p>
+            <p class="card__text">OEM & aftermarket.</p>
             <a href="#" class="btn btn--secondary card__action">Shop Brakes</a>
           </div>
         </article>
-        <article class="card" aria-label="Engine Components">
-          <img src="https://via.placeholder.com/400x200?text=Engine+Parts" alt="Engine Components" class="card__img">
+        <article class="card">
+          <img src="https://via.placeholder.com/400x200?text=Engine+Parts" alt="Engine Components" loading="lazy" class="card__img">
           <div class="card__body">
             <h3 class="card__title">Engine Components</h3>
-            <p class="card__text">Pistons, belts, filters—performance tested.</p>
+            <p class="card__text">Pistons, belts, filters.</p>
             <a href="#" class="btn btn--secondary card__action">Shop Engines</a>
           </div>
         </article>
-        <article class="card" aria-label="Accessories & Upgrades">
-          <img src="https://via.placeholder.com/400x200?text=Accessories" alt="Accessories & Upgrades" class="card__img">
+        <article class="card">
+          <img src="https://via.placeholder.com/400x200?text=Accessories" alt="Accessories & Upgrades" loading="lazy" class="card__img">
           <div class="card__body">
             <h3 class="card__title">Accessories & Upgrades</h3>
-            <p class="card__text">Mats, lighting, suspension kits, & more.</p>
+            <p class="card__text">Mats, lighting, kits.</p>
             <a href="#" class="btn btn--secondary card__action">Shop Accessories</a>
           </div>
         </article>
@@ -338,9 +112,9 @@
   </section>
 
   <!-- Salvage & Recovery Booking -->
-  <section id="salvage" class="section" aria-labelledby="salvage-title">
+  <section id="salvage" class="section">
     <div class="container">
-      <h2 id="salvage-title">Salvage & Recovery Booking</h2>
+      <h2 class="section__title">Salvage & Recovery Booking</h2>
       <form class="form" id="recovery" role="form">
         <div class="form__group">
           <label for="service_type" class="form__label">Service Type</label>
@@ -393,7 +167,7 @@
         <a href="#" class="footer__link">Instagram</a>
       </div>
     </div>
-    <p class="u-text-center" style="margin-top: var(--space-lg);">&copy; 2025 AutoHub. All rights reserved.</p>
+    <p class="u-text-center">&copy; 2025 AutoHub. All rights reserved.</p>
   </footer>
 
   <!-- Mobile Menu Toggle Script -->

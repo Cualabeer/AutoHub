@@ -1,245 +1,121 @@
-// Booking modal and calendar/time slots functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const openBtn = document.getElementById('openBookingBtn');
 
-document.addEventListener("DOMContentLoaded", () => {
-  const openBtn = document.getElementById("openBookingBtn");
-  const modal = document.getElementById("bookingModal");
-  const closeBtn = document.getElementById("closeBookingBtn");
-  const bookingForm = document.getElementById("bookingForm");
+  openBtn.addEventListener('click', () => {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'booking-overlay';
 
-  const serviceSelect = document.getElementById("serviceSelect");
-  const descriptionInput = document.getElementById("descriptionInput");
+    // Create modal container
+    const modal = document.createElement('div');
+    modal.className = 'booking-modal';
 
-  const monthYearDisplay = document.getElementById("monthYear");
-  const prevMonthBtn = document.getElementById("prevMonthBtn");
-  const nextMonthBtn = document.getElementById("nextMonthBtn");
-  const calendarBody = document.getElementById("calendarBody");
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'close-btn';
+    closeBtn.setAttribute('aria-label', 'Close booking form');
+    closeBtn.innerHTML = '&times;';
 
-  const timeslotsContainer = document.getElementById("timeslotsContainer");
-  const submitBtn = document.getElementById("submitBookingBtn");
+    // Title
+    const title = document.createElement('h3');
+    title.textContent = 'Book a Service';
 
-  let selectedDate = null;
-  let selectedTime = null;
+    // Booking form markup
+    modal.innerHTML += `
+      <form class="booking-form" id="bookingForm" novalidate>
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
 
-  let currentYear, currentMonth;
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" placeholder="Your email address" required />
 
-  // Constants
-  const DAY_RATE_START = 9; // 9 AM
-  const DAY_RATE_END = 18; // 6 PM
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your phone number" required />
 
-  // Open modal
-  openBtn.addEventListener("click", () => {
-    modal.classList.add("show");
-    modal.setAttribute("aria-hidden", "false");
-    bookingForm.reset();
-    selectedDate = null;
-    selectedTime = null;
-    updateSubmitButton();
-    renderCalendar(currentYear, currentMonth);
-    timeslotsContainer.innerHTML = '<p>Select a date to see available time slots.</p>';
-    serviceSelect.focus();
-  });
+        <label for="serviceType">Service Type *</label>
+        <select id="serviceType" name="serviceType" required>
+          <option value="" disabled selected>Select a service</option>
+          <option value="towing">Towing</option>
+          <option value="mechanic">Mechanic</option>
+          <option value="inspection">Inspection</option>
+          <option value="recovery">Recovery</option>
+        </select>
 
-  // Close modal
-  closeBtn.addEventListener("click", closeModal);
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("show")) {
-      closeModal();
-    }
-  });
+        <label for="date">Preferred Date *</label>
+        <input type="date" id="date" name="date" required />
 
-  function closeModal() {
-    modal.classList.remove("show");
-    modal.setAttribute("aria-hidden", "true");
-  }
+        <label for="details">Additional Details</label>
+        <textarea id="details" name="details" rows="3" placeholder="Tell us more..."></textarea>
 
-  // Initialize to current date
-  const today = new Date();
-  currentYear = today.getFullYear();
-  currentMonth = today.getMonth();
+        <button type="submit">Submit Booking</button>
+      </form>
+    `;
 
-  // Render calendar
-  function renderCalendar(year, month) {
-    monthYearDisplay.textContent = new Date(year, month).toLocaleDateString("en-US", {
-      month: "long",
-      year: "numeric",
-    });
+    // Insert close button and title at top of modal
+    modal.prepend(closeBtn);
+    modal.insertBefore(title, modal.querySelector('.booking-form'));
 
-    calendarBody.innerHTML = "";
+    // Append modal to overlay, then overlay to body
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
 
-    // Weekday headers
-    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    weekdays.forEach(day => {
-      const dayDiv = document.createElement("div");
-      dayDiv.textContent = day;
-      dayDiv.style.fontWeight = "700";
-      dayDiv.style.backgroundColor = "#dcdde1";
-      dayDiv.style.cursor = "default";
-      calendarBody.appendChild(dayDiv);
-    });
+    // Focus first input
+    document.getElementById('fullName').focus();
 
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const startDayIndex = firstDay.getDay();
-
-    // Fill blank days before the first
-    for (let i = 0; i < startDayIndex; i++) {
-      const blank = document.createElement("div");
-      blank.classList.add("disabled");
-      calendarBody.appendChild(blank);
-    }
-
-    // Fill days
-    for (let day = 1; day <= lastDay.getDate(); day++) {
-      const dateDiv = document.createElement("div");
-      dateDiv.tabIndex = 0;
-      dateDiv.textContent = day;
-
-      const dateObj = new Date(year, month, day);
-      dateDiv.dataset.date = dateObj.toISOString();
-
-      // Disable past dates (before today)
-      if (dateObj < today.setHours(0,0,0,0)) {
-        dateDiv.classList.add("disabled");
-        dateDiv.tabIndex = -1;
-      } else {
-        dateDiv.addEventListener("click", () => {
-          selectDate(dateDiv, dateObj);
-        });
-        dateDiv.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            selectDate(dateDiv, dateObj);
-          }
-        });
-      }
-
-      calendarBody.appendChild(dateDiv);
-    }
-  }
-
-  function selectDate(element, dateObj) {
-    // Clear previous selection
-    [...calendarBody.querySelectorAll(".selected")].forEach(el => el.classList.remove("selected"));
-
-    element.classList.add("selected");
-    selectedDate = dateObj;
-    selectedTime = null;
-    renderTimeSlots(dateObj);
-    updateSubmitButton();
-  }
-
-  function renderTimeSlots(date) {
-    timeslotsContainer.innerHTML = "";
-    const container = timeslotsContainer;
-
-    const slots = [];
-
-    // Create slots from 9AM to 6PM (day rate)
-    for (let hour = DAY_RATE_START; hour < DAY_RATE_END; hour++) {
-      slots.push({ hour, rate: "day" });
-    }
-    // Create slots from 6PM to 11PM (night rate)
-    for (let hour = DAY_RATE_END; hour <= 23; hour++) {
-      slots.push({ hour, rate: "night" });
-    }
-
-    container.appendChild(createTimeSlotsButtons(slots));
-  }
-
-  function createTimeSlotsButtons(slots) {
-    const fragment = document.createDocumentFragment();
-
-    slots.forEach(({ hour, rate }) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.classList.add(rate === "day" ? "day-rate" : "night-rate");
-      btn.textContent = formatHour(hour) + (rate === "night" ? " (Night rate)" : "");
-      btn.dataset.hour = hour;
-
-      btn.addEventListener("click", () => {
-        // Deselect previous
-        [...timeslotsContainer.querySelectorAll("button.selected")].forEach(el => el.classList.remove("selected"));
-        btn.classList.add("selected");
-        selectedTime = hour;
-        updateSubmitButton();
-      });
-
-      fragment.appendChild(btn);
-    });
-
-    return fragment;
-  }
-
-  function formatHour(h) {
-    const ampm = h >= 12 ? "PM" : "AM";
-    let hour12 = h % 12;
-    hour12 = hour12 === 0 ? 12 : hour12;
-    return `${hour12}:00 ${ampm}`;
-  }
-
-  // Month navigation
-  prevMonthBtn.addEventListener("click", () => {
-    if (currentMonth === 0) {
-      currentMonth = 11;
-      currentYear--;
-    } else {
-      currentMonth--;
-    }
-    renderCalendar(currentYear, currentMonth);
-  });
-
-  nextMonthBtn.addEventListener("click", () => {
-    if (currentMonth === 11) {
-      currentMonth = 0;
-      currentYear++;
-    } else {
-      currentMonth++;
-    }
-    renderCalendar(currentYear, currentMonth);
-  });
-
-  // Enable submit button only if all fields selected/filled
-  function updateSubmitButton() {
-    const serviceSelected = serviceSelect.value !== "";
-    const descriptionFilled = descriptionInput.value.trim() !== "";
-    const dateSelected = selectedDate !== null;
-    const timeSelected = selectedTime !== null;
-
-    submitBtn.disabled = !(serviceSelected && descriptionFilled && dateSelected && timeSelected);
-  }
-
-  // Update submit button on form inputs change
-  serviceSelect.addEventListener("change", updateSubmitButton);
-  descriptionInput.addEventListener("input", updateSubmitButton);
-
-  // Handle form submit
-  bookingForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    if (submitBtn.disabled) return;
-
-    // Format booking data
-    const booking = {
-      service: serviceSelect.value,
-      description: descriptionInput.value.trim(),
-      date: selectedDate.toISOString().split("T")[0],
-      time: formatHour(selectedTime),
-      rate: selectedTime >= DAY_RATE_END ? "night" : "day"
+    // Close modal handler
+    const closeModal = () => {
+      overlay.remove();
+      openBtn.focus();
     };
 
-    alert(
-      `Booking confirmed:\n` +
-      `Service: ${booking.service}\n` +
-      `Description: ${booking.description}\n` +
-      `Date: ${booking.date}\n` +
-      `Time: ${booking.time} (${booking.rate} rate)`
-    );
+    closeBtn.addEventListener('click', closeModal);
 
-    // Here you would typically send data to backend
+    // Close modal on outside click
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
 
-    closeModal();
+    // Keyboard navigation - ESC closes modal
+    document.addEventListener('keydown', function escHandler(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', escHandler);
+      }
+    });
+
+    // Form submission
+    const form = document.getElementById('bookingForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Gather form data
+      const formData = {
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        serviceType: form.serviceType.value,
+        date: form.date.value,
+        details: form.details.value.trim(),
+      };
+
+      // For demo, just alert the data and close modal
+      alert(
+        `Booking Submitted!\n
+Name: ${formData.fullName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Service: ${formData.serviceType}
+Date: ${formData.date}
+Details: ${formData.details || 'N/A'}
+`
+      );
+
+      closeModal();
+    });
   });
 });

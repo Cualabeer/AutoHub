@@ -1,123 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic Meta & Preloads -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AutoHub – Cars · Parts · Salvage & Recovery</title>
-  <meta name="description" content="AutoHub – your one-stop hub for car sales, parts, salvage & roadside recovery.">
-
-  <!-- Preload hero image & Web Font -->
-  <link rel="preload" href="https://via.placeholder.com/1600x600" as="image">
-  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-
-  <!-- Main CSS (now in styles/styles.css) -->
-  <link rel="stylesheet" href="styles/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoGate - Car Sales, Parts & Services</title>
+  <link rel="stylesheet" href="styles/index.css" />
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header" role="banner">
-    <div class="header__inner">
-      <a href="/" class="header__logo">Auto<span class="header__logo--secondary">Hub</span></a>
-      <button class="header__toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="header__nav" role="navigation">
-        <ul class="header__nav-list">
-          <li><a href="#cars" class="header__nav-link">Cars</a></li>
-          <li><a href="#parts" class="header__nav-link">Parts</a></li>
-          <li><a href="#salvage" class="header__nav-link">Salvage</a></li>
-          <li><a href="#recovery" class="header__nav-link">Recovery</a></li>
-          <li><a href="#contact" class="header__nav-link">Contact</a></li>
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">AutoGate</div>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#cars">Cars</a></li>
+          <li><a href="#parts">Parts</a></li>
+          <li><a href="#services">Services</a></li>
         </ul>
       </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle Menu">☰</button>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero" role="img" aria-label="Showcase of auto services">
     <div class="hero__content">
       <h1 class="hero__title">Your One-Stop Auto Sales & Services Hub</h1>
       <p class="hero__subtitle">
-        Explore new & used cars, find quality parts, and book salvage or roadside recovery—all in one place.
+        Explore new & used cars, find quality parts, and book services like recovery, salvage, towing, and more.
       </p>
       <a href="#cars" class="btn btn--primary">Shop Cars</a>
       <a href="#parts" class="btn btn--secondary">Browse Parts</a>
+      <a href="#services" class="btn btn--primary">Book a Service</a>
     </div>
   </section>
 
   <!-- Cars Section -->
   <section id="cars" class="section">
     <div class="container">
-      <h2 class="section__title">Featured Cars</h2>
-      <div class="features">
-        <article class="card">
-          <img src="https://via.placeholder.com/400x200?text=Sedan+LX" alt="2023 Sedan LX" loading="lazy" class="card__img">
-          <div class="card__body">
-            <h3 class="card__title">2023 Sedan LX</h3>
-            <p class="card__text">Efficient, stylish. £18,500.</p>
-            <a href="#" class="btn btn--primary card__action">View Details</a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://via.placeholder.com/400x200?text=SUV+XTR" alt="2022 SUV XTR" loading="lazy" class="card__img">
-          <div class="card__body">
-            <h3 class="card__title">2022 SUV XTR</h3>
-            <p class="card__text">Spacious, powerful. £24,900.</p>
-            <a href="#" class="btn btn--primary card__action">View Details</a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://via.placeholder.com/400x200?text=Convertible+Z" alt="2023 Convertible Z" loading="lazy" class="card__img">
-          <div class="card__body">
-            <h3 class="card__title">2023 Convertible Z</h3>
-            <p class="card__text">Luxury driving. £29,750.</p>
-            <a href="#" class="btn btn--primary card__action">View Details</a>
-          </div>
-        </article>
-      </div>
+      <h2 class="section__title">Available Cars</h2>
+      <p>Sample car listings go here...</p>
     </div>
   </section>
 
   <!-- Parts Section -->
   <section id="parts" class="section">
     <div class="container">
-      <h2 class="section__title">Top-Quality Parts</h2>
-      <div class="features">
-        <article class="card">
-          <img src="https://via.placeholder.com/400x200?text=Brakes" alt="Brake Systems" loading="lazy" class="card__img">
-          <div class="card__body">
-            <h3 class="card__title">Brake Systems</h3>
-            <p class="card__text">OEM & aftermarket.</p>
-            <a href="#" class="btn btn--secondary card__action">Shop Brakes</a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://via.placeholder.com/400x200?text=Engine+Parts" alt="Engine Components" loading="lazy" class="card__img">
-          <div class="card__body">
-            <h3 class="card__title">Engine Components</h3>
-            <p class="card__text">Pistons, belts, filters.</p>
-            <a href="#" class="btn btn--secondary card__action">Shop Engines</a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="https://via.placeholder.com/400x200?text=Accessories" alt="Accessories & Upgrades" loading="lazy" class="card__img">
-          <div class="card__body">
-            <h3 class="card__title">Accessories & Upgrades</h3>
-            <p class="card__text">Mats, lighting, kits.</p>
-            <a href="#" class="btn btn--secondary card__action">Shop Accessories</a>
-          </div>
-        </article>
-      </div>
+      <h2 class="section__title">Car Parts</h2>
+      <p>Sample parts listings go here...</p>
     </div>
   </section>
 
-  <!-- Salvage & Recovery Booking -->
-  <section id="salvage" class="section">
+  <!-- Services Booking -->
+  <section id="services" class="section">
     <div class="container">
-      <h2 class="section__title">Salvage & Recovery Booking</h2>
+      <h2 class="section__title">Book a Service</h2>
       <form class="form" id="recovery" role="form">
+
+        <!-- Service Type -->
         <div class="form__group">
           <label for="service_type" class="form__label">Service Type</label>
           <select id="service_type" class="form__control" required>
@@ -125,61 +66,48 @@
             <option value="salvage">Vehicle Salvage</option>
             <option value="recovery">Roadside Recovery</option>
             <option value="towing">Towing</option>
+            <option value="mechanic">Mechanic Services</option>
           </select>
         </div>
+
+        <!-- Contact Info -->
         <div class="form__group">
           <label for="contact_name" class="form__label">Contact Name</label>
-          <input type="text" id="contact_name" class="form__control" placeholder="Your Name" required>
+          <input type="text" id="contact_name" class="form__control" placeholder="Your Name" required />
         </div>
         <div class="form__group">
           <label for="contact_phone" class="form__label">Phone Number</label>
-          <input type="tel" id="contact_phone" class="form__control" placeholder="+44 7700 900123" required>
+          <input type="tel" id="contact_phone" class="form__control" placeholder="+44 7700 900123" required />
         </div>
         <div class="form__group">
-          <label for="pickup_location" class="form__label">Pickup Location</label>
-          <input type="text" id="pickup_location" class="form__control" placeholder="Address or GPS coords" required>
+          <label for="pickup_location" class="form__label">Service Location</label>
+          <input type="text" id="pickup_location" class="form__control" placeholder="Address or GPS" required />
         </div>
+
+        <!-- Description -->
         <div class="form__group">
-          <label for="additional_details" class="form__label">Additional Details</label>
-          <textarea id="additional_details" class="form__control" rows="4" placeholder="Describe the issue"></textarea>
+          <label for="service_description" class="form__label">Describe Your Issue</label>
+          <textarea id="service_description" class="form__control" rows="4" placeholder="Describe the vehicle issue or service needed" required></textarea>
         </div>
+
+        <!-- Date & Time -->
+        <div class="form__group">
+          <label for="pickup_datetime" class="form__label">Preferred Date & Time</label>
+          <input type="text" id="pickup_datetime" class="form__control" placeholder="Select date & time" readonly required />
+        </div>
+
         <button type="submit" class="btn btn--primary">Request Service</button>
       </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer" role="contentinfo">
-    <div class="footer__inner">
-      <div class="footer__section">
-        <h4>About AutoHub</h4>
-        <p>Your trusted partner for car sales, parts, salvage, and recovery services.</p>
-      </div>
-      <div class="footer__section">
-        <h4>Quick Links</h4>
-        <a href="#cars" class="footer__link">Cars for Sale</a>
-        <a href="#parts" class="footer__link">Parts</a>
-        <a href="#salvage" class="footer__link">Salvage & Recovery</a>
-        <a href="#contact" class="footer__link">Contact Us</a>
-      </div>
-      <div class="footer__section">
-        <h4>Follow Us</h4>
-        <a href="#" class="footer__link">Facebook</a>
-        <a href="#" class="footer__link">Twitter</a>
-        <a href="#" class="footer__link">Instagram</a>
-      </div>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 AutoGate. All rights reserved.</p>
     </div>
-    <p class="u-text-center">&copy; 2025 AutoHub. All rights reserved.</p>
   </footer>
 
-  <!-- Mobile Menu Toggle Script -->
-  <script>
-    const btn = document.querySelector('.header__toggle');
-    const nav = document.querySelector('.header__nav');
-    btn.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open);
-    });
-  </script>
+  <script src="scripts/index.js"></script>
 </body>
 </html>

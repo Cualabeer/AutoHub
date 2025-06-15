@@ -2,112 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoGate - Car Sales, Parts & Services</title>
-  <link rel="stylesheet" href="styles/index.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Car Sales, Parts & Services Hub</title>
+  <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
 
-  <!-- Header / Navigation -->
-  <header class="header">
-    <div class="container">
-      <div class="logo">AutoGate</div>
-      <nav class="nav" id="nav">
-        <ul class="nav__list">
-          <li><a href="#cars">Cars</a></li>
-          <li><a href="#parts">Parts</a></li>
-          <li><a href="#services">Services</a></li>
-        </ul>
-      </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle Menu">☰</button>
-    </div>
+  <header>
+    <h1>AutoHub: Car Sales, Parts & Services</h1>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" role="img" aria-label="Showcase of auto services">
-    <div class="hero__content">
-      <h1 class="hero__title">Your One-Stop Auto Sales & Services Hub</h1>
-      <p class="hero__subtitle">
-        Explore new & used cars, find quality parts, and book services like recovery, salvage, towing, and more.
-      </p>
-      <a href="#cars" class="btn btn--primary">Shop Cars</a>
-      <a href="#parts" class="btn btn--secondary">Browse Parts</a>
-      <a href="#services" class="btn btn--primary">Book a Service</a>
-    </div>
-  </section>
+  <main>
+    <section class="hero">
+      <p>Your one-stop hub for car sales, parts, salvage & recovery booking.</p>
+      <button id="openBookingBtn" aria-haspopup="dialog" aria-controls="bookingModal">
+        Book a Service
+      </button>
+    </section>
+  </main>
 
-  <!-- Cars Section -->
-  <section id="cars" class="section">
-    <div class="container">
-      <h2 class="section__title">Available Cars</h2>
-      <p>Sample car listings go here...</p>
-    </div>
-  </section>
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-content" role="document" tabindex="-1">
+      <button class="close-btn" id="closeBookingBtn" aria-label="Close booking form">&times;</button>
+      <h2 id="modalTitle">Book a Service</h2>
+      <form id="bookingForm" novalidate>
+        <label for="serviceSelect">Select Service</label>
+        <select id="serviceSelect" required aria-required="true">
+          <option value="">-- Select a Service --</option>
+          <option value="Towing/Recovery">Towing/Recovery</option>
+          <option value="Mechanic Services">Mechanic Services</option>
+          <option value="Oil Change">Oil Change</option>
+          <option value="Tire Replacement">Tire Replacement</option>
+          <option value="Brake Inspection">Brake Inspection</option>
+          <option value="Engine Diagnostics">Engine Diagnostics</option>
+          <option value="Full Service">Full Service</option>
+        </select>
 
-  <!-- Parts Section -->
-  <section id="parts" class="section">
-    <div class="container">
-      <h2 class="section__title">Car Parts</h2>
-      <p>Sample parts listings go here...</p>
-    </div>
-  </section>
+        <label for="descriptionInput">Description / Notes</label>
+        <textarea
+          id="descriptionInput"
+          placeholder="Enter any additional details..."
+          required
+          aria-required="true"
+          rows="3"
+        ></textarea>
 
-  <!-- Services Booking -->
-  <section id="services" class="section">
-    <div class="container">
-      <h2 class="section__title">Book a Service</h2>
-      <form class="form" id="recovery" role="form">
-
-        <!-- Service Type -->
-        <div class="form__group">
-          <label for="service_type" class="form__label">Service Type</label>
-          <select id="service_type" class="form__control" required>
-            <option value="">Choose a Service</option>
-            <option value="salvage">Vehicle Salvage</option>
-            <option value="recovery">Roadside Recovery</option>
-            <option value="towing">Towing</option>
-            <option value="mechanic">Mechanic Services</option>
-          </select>
+        <div class="calendar" aria-label="Calendar for selecting booking date">
+          <div class="calendar-header">
+            <button type="button" id="prevMonthBtn" aria-label="Previous Month">&lt;</button>
+            <div id="monthYear" aria-live="polite"></div>
+            <button type="button" id="nextMonthBtn" aria-label="Next Month">&gt;</button>
+          </div>
+          <div class="calendar-grid" id="calendarBody" role="grid"></div>
         </div>
 
-        <!-- Contact Info -->
-        <div class="form__group">
-          <label for="contact_name" class="form__label">Contact Name</label>
-          <input type="text" id="contact_name" class="form__control" placeholder="Your Name" required />
-        </div>
-        <div class="form__group">
-          <label for="contact_phone" class="form__label">Phone Number</label>
-          <input type="tel" id="contact_phone" class="form__control" placeholder="+44 7700 900123" required />
-        </div>
-        <div class="form__group">
-          <label for="pickup_location" class="form__label">Service Location</label>
-          <input type="text" id="pickup_location" class="form__control" placeholder="Address or GPS" required />
+        <div class="timeslots" id="timeslotsContainer">
+          <p>Select a date to see available time slots.</p>
         </div>
 
-        <!-- Description -->
-        <div class="form__group">
-          <label for="service_description" class="form__label">Describe Your Issue</label>
-          <textarea id="service_description" class="form__control" rows="4" placeholder="Describe the vehicle issue or service needed" required></textarea>
-        </div>
-
-        <!-- Date & Time -->
-        <div class="form__group">
-          <label for="pickup_datetime" class="form__label">Preferred Date & Time</label>
-          <input type="text" id="pickup_datetime" class="form__control" placeholder="Select date & time" readonly required />
-        </div>
-
-        <button type="submit" class="btn btn--primary">Request Service</button>
+        <button type="submit" id="submitBookingBtn" disabled>
+          Confirm Booking
+        </button>
       </form>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 AutoGate. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="scripts/index.js"></script>
+  <script src="scripts/booking.js"></script>
 </body>
 </html>
